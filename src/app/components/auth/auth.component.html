@@ -1,0 +1,40 @@
+<div *ngIf="mode === 'Login'">
+  <div class="auth-container">
+    <button (click)="signInWithGoogle()">Accedi con Google</button>
+    <hr>
+    <div>
+      <input type="email" [(ngModel)]="email" placeholder="Email" required>
+      <input type="password" [(ngModel)]="password" placeholder="Password" required>
+      <button (click)="signInWithEmail()">Accedi con Email</button>
+    </div>
+    <div *ngIf="authError" class="error-message">
+      {{ authError }}
+    </div>
+    <p>Non hai un account?</p>
+    <a mat-raised-button [routerLink]="['/sign']" [queryParams]="{ mode: 'Register' }">Registrati</a>
+  </div>
+</div>
+
+<div *ngIf="mode === 'Register'">
+  <div class="auth-container">
+    <mat-slide-toggle [(ngModel)]="organizzazione" class="example-margin">
+
+    Registrati come organizzazione
+   </mat-slide-toggle>
+    <button (click)="signInWithGoogle()">Accedi con Google</button>
+    <hr>
+    <div>
+      <input type="text" [(ngModel)]="nome" placeholder="Nome" required>
+      <input type="email" [(ngModel)]="email" placeholder="Email" required>
+      <input type="password" [(ngModel)]="password" placeholder="Password" required>
+    </div>
+    <div *ngIf="authError" class="error-message">
+      {{ authError }}
+    </div>
+    <button (click)="signUpWithEmail()">Registrati con Email</button>
+
+    <p>Hai già un account?</p>
+    <a mat-raised-button [routerLink]="['/sign']" [queryParams]="{ mode: 'Login' }">Login</a>
+  </div>
+
+</div>

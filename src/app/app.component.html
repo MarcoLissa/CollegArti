@@ -1,0 +1,9 @@
+<div *ngIf="isLoggedIn">
+    <p>You are logged in</p>
+  </div>
+  <div *ngIf="!isLoggedIn">
+    <p>You are not logged in</p>
+  </div>
+  
+  <router-outlet></router-outlet>
+  

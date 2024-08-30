@@ -1,0 +1,23 @@
+<app-header></app-header>
+
+<div class="showcase-container">
+  <h2>Events</h2>
+  <button *ngIf="isOrganizer" (click)="addEvent()">
+    Add New Event
+  </button>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+
+  <ul>
+    <li *ngFor="let event of events">
+      <h3>{{ event.name }}</h3>
+      <p>Date: {{ event.eventData.toDateString() }}</p>
+      <p>Location: {{ event.city }}</p>
+      <p>Total Artist slots: {{ event.ArtistSlots }}</p>
+      <p>Actual Partecipant Artist: {{event.Artists.length}}</p>
+      <button (click)="viewEvent(event.id)">View Details</button>
+    </li>
+  </ul>
+</div>
