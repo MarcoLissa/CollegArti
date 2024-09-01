@@ -9,6 +9,8 @@ import { NgModule } from '@angular/core';
 import { SetPasswordComponent } from './components/set-password/set-password.component';
 import { NotificationComponent } from './components/notifications/notification.component';
 import { AddEventComponent } from './components/add-event/add-event.component';
+import { OfflineComponent } from './components/offline/offline.component';
+
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'sign', component: SignComponent },
@@ -18,6 +20,7 @@ export const routes: Routes = [
     { path: 'showcase', component: ShowcaseComponent },
     { path: 'set-password', component: SetPasswordComponent },
     { path: 'notifications', component: NotificationComponent },
+    { path: 'offline', component: OfflineComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
   ];
 @NgModule({
