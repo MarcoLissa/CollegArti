@@ -1,0 +1,49 @@
+/* Stili generali dell'intestazione */
+.header {
+    background-color: #f59417; /* Colore arancione */
+    color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between; /* Spaziatura tra gli elementi */
+    align-items: center;
+}
+
+/* Contenitore per il bottone Home */
+.home-container {
+    display: flex;
+    justify-content: flex-start; /* Allinea l'elemento a sinistra */
+}
+
+/* Contenitore per i bottoni Login e Registrati */
+.auth-container {
+    display: flex;
+    justify-content: flex-end; /* Allinea l'elemento a destra */
+    gap: 10px; /* Aggiunge spazio tra i bottoni */
+}
+
+/* Stili per l'icona e il bottone */
+.icon {
+    display: flex; /* Usa flexbox per il contenuto dell'icona */
+    align-items: center; /* Allinea verticalmente */
+}
+
+#home a, #login a, #signup a, #events a {
+    color: #ffffff; /* Colore del testo del bottone */
+    text-decoration: none; /* Rimuove la sottolineatura del testo */
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: #c04d01; /* Colore di sfondo del bottone */
+    border-radius: 4px; /* Angoli arrotondati */
+    transition: background-color 0.3s, color 0.3s; /* Transizioni per hover */
+}
+
+#home a:hover, #login a:hover,#signup a:hover {
+    background-color: #b34100; /* Colore di sfondo al passaggio del mouse */
+    color: #ffffff; /* Colore del testo al passaggio del mouse */
+}
+
+/* Icona font-awesome */
+.fa {
+    margin-right: 8px; /* Spazio tra l'icona e il testo */
+}

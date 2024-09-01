@@ -1,0 +1,57 @@
+<app-header></app-header>
+<app-background></app-background>
+
+<div class="profile-container">
+    <h2>Profilo Utente</h2>
+    
+    <form (ngSubmit)="updateProfile()">
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input
+          id="name"
+          type="text"
+          [(ngModel)]="user.nome"
+          name="nome"
+          required
+        />
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          [(ngModel)]="user.email"
+          name="email"
+          required
+          [readonly]="true"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Nuova Password</label>
+        <input
+          id="password"
+          type="password"
+          [(ngModel)]="user.password"
+          name="password"
+          placeholder="Lascia vuoto per mantenere la password attuale"
+        />
+      </div>
+      
+      <div class="form-group">
+        <label>Sei registrato come:</label>
+        <p>{{ user.organizzazione ? 'Organizzazione' : 'Artista' }}</p>
+      </div>
+      
+      <div *ngIf="updateError" class="error-message">
+        {{ updateError }}
+      </div>
+      <div *ngIf="updateSuccess" class="success-message">
+        Informazioni aggiornate con successo!
+      </div>
+      <button type="submit" mat-raised-button color="primary">
+        Aggiorna Profilo
+      </button>
+    </form>
+  </div>
+  

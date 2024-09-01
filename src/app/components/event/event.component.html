@@ -1,0 +1,31 @@
+<app-header></app-header> <!-- Assuming you have a header component -->
+<app-background></app-background>
+
+<div class="event-container">
+  <h2>{{ event?.name }}</h2>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+
+  <div *ngIf="event">
+    <p><strong>Date:</strong> {{ event.eventData.toDateString() }}</p>
+    <p><strong>Location:</strong> {{ event.city }}</p>
+    <p><strong>Created By:</strong> {{ event.creator }}</p>
+    <p><strong>Creation Date:</strong> {{ event.creationData.toDateString() }}</p>
+    <p><strong>Total Artist Slots:</strong> {{ event.ArtistSlots }}</p>
+    <p><strong>Actual Participants:</strong> {{ event.Artists.length }}</p>
+
+    <h3>Participating Artists:</h3>
+    <ul>
+      <li *ngFor="let artist of event.Artists">{{ artist }}</li>
+    </ul>
+
+    <button (click)="goBack()">Back to Events</button>
+
+    <button *ngIf="isArtist" (click)="sendParticipationRequest()">
+      Send Participation Request
+    </button>
+    
+  </div>
+</div>

@@ -1,0 +1,14 @@
+
+  <router-outlet></router-outlet>
+  <div class="login-status" *ngIf="isLoggedIn !== null">
+    <div *ngIf="isLoggedIn; else loggedOut">
+      <span class="status-icon success">&#x2714;</span> 
+      <span>You are logged in</span>
+    </div>
+    <ng-template #loggedOut>
+      <div>
+        <span class="status-icon error">&#x2716;</span> 
+        <span>You are logged out</span>
+      </div>
+    </ng-template>
+  </div>
