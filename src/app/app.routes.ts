@@ -10,6 +10,7 @@ import { SetPasswordComponent } from './components/set-password/set-password.com
 import { NotificationComponent } from './components/notifications/notification.component';
 import { AddEventComponent } from './components/add-event/add-event.component';
 import { OfflineComponent } from './components/offline/offline.component';
+import { ArtistsComponent } from './components/artists/artists.component';  
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -19,7 +20,7 @@ export const routes: Routes = [
     { path: 'add-event', component: AddEventComponent },
     { path: 'showcase', component: ShowcaseComponent },
     { path: 'set-password', component: SetPasswordComponent },
-    { path: 'notifications', component: NotificationComponent },
+    { path: 'artists', component: ArtistsComponent }, 
     { path: 'offline', component: OfflineComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
   ];

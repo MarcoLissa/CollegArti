@@ -1,4 +1,28 @@
 
+<p class=" title ">Benvenuto su CollegArti!</p>
+<mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>Trova artisti per i tuoi eventi!</mat-card-title>
+      <img mat-card-md-image src="../../../assets/images/stickman.jpg"  alt="smile">
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    {{testoOrganizzazione}}
+  </mat-card-content>
+</mat-card>
+<mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>Inizia a farti notare!</mat-card-title>
+      <img mat-card-md-image src="../../../assets/images/brush.png"  alt="brush stroke">
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    {{testoArtista}}
+  </mat-card-content>
+</mat-card>
+
 <div class="container mt-5">
   <h2>Contact Form</h2>
   <form (ngSubmit)="onSubmit()">

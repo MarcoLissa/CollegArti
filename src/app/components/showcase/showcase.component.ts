@@ -5,12 +5,13 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { Event } from '../../models/event.model';
 import { AuthService } from '../../services/auth.service';
-import { User } from '../../models/user.model'; 
+import { User } from '../../models/user.model';
+import { BackgroundComponent } from "../background/background.component"; 
 
 @Component({
   selector: 'app-showcase',
   standalone: true,
-  imports: [CommonModule, HeaderComponent],
+  imports: [CommonModule, HeaderComponent, BackgroundComponent],
   templateUrl: './showcase.component.html',
   styleUrls: ['./showcase.component.css']
 })
@@ -40,10 +41,12 @@ export class ShowcaseComponent implements OnInit {
         // Ensure user data is properly mapped
         const mappedUser = new User(
           user.uid || '',
+          user.city || '',
           user.email || null,
           user.nome || null,
           user.organizzazione || false,
           user.password || ''
+
         );
         console.log('Mapped User:', mappedUser);
         this.isOrganizer = mappedUser.organizzazione;

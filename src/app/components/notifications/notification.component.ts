@@ -7,13 +7,14 @@ import { CommonModule } from '@angular/common';
 import { Observable, forkJoin } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { HeaderComponent } from "../header/header.component";
+import { BackgroundComponent } from "../background/background.component";
 
 @Component({
   selector: 'app-notifications',
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.css'],
   standalone: true,
-  imports: [CommonModule, HeaderComponent] 
+  imports: [CommonModule, HeaderComponent, BackgroundComponent] 
 })
 
 export class NotificationComponent implements OnInit {

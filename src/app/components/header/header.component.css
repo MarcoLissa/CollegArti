@@ -1,49 +1,54 @@
-/* Stili generali dell'intestazione */
+/* General styles for header */
 .header {
-    background-color: #f59417; /* Colore arancione */
+    background-color: #f59417; /* Orange color */
     color: #ffffff;
     padding: 10px 20px;
     display: flex;
-    justify-content: space-between; /* Spaziatura tra gli elementi */
+    justify-content: space-between; /* Space between elements */
     align-items: center;
 }
 
-/* Contenitore per il bottone Home */
+/* Container for the Home button */
 .home-container {
     display: flex;
-    justify-content: flex-start; /* Allinea l'elemento a sinistra */
+    justify-content: flex-start; /* Align items to the left */
 }
 
-/* Contenitore per i bottoni Login e Registrati */
-.auth-container {
+/* Container for buttons on the right */
+.auth-actions-container {
     display: flex;
-    justify-content: flex-end; /* Allinea l'elemento a destra */
-    gap: 10px; /* Aggiunge spazio tra i bottoni */
+    align-items: center; /* Align items vertically in the center */
 }
 
-/* Stili per l'icona e il bottone */
+/* Container for individual buttons */
+.auth-buttons {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+}
+
+/* Styles for icons and buttons */
 .icon {
-    display: flex; /* Usa flexbox per il contenuto dell'icona */
-    align-items: center; /* Allinea verticalmente */
+    display: flex; /* Use flexbox for icon content */
+    align-items: center; /* Vertically align */
 }
 
 #home a, #login a, #signup a, #events a {
-    color: #ffffff; /* Colore del testo del bottone */
-    text-decoration: none; /* Rimuove la sottolineatura del testo */
+    color: #ffffff; /* Button text color */
+    text-decoration: none; /* Remove underline */
     display: flex;
     align-items: center;
     padding: 8px 16px;
-    background-color: #c04d01; /* Colore di sfondo del bottone */
-    border-radius: 4px; /* Angoli arrotondati */
-    transition: background-color 0.3s, color 0.3s; /* Transizioni per hover */
+    background-color: #c04d01; /* Button background color */
+    border-radius: 4px; /* Rounded corners */
+    transition: background-color 0.3s, color 0.3s; /* Transition effects */
 }
 
-#home a:hover, #login a:hover,#signup a:hover {
-    background-color: #b34100; /* Colore di sfondo al passaggio del mouse */
-    color: #ffffff; /* Colore del testo al passaggio del mouse */
+#home a:hover, #login a:hover, #signup a:hover, #events a:hover {
+    background-color: #b34100; /* Background color on hover */
+    color: #ffffff; /* Text color on hover */
 }
 
-/* Icona font-awesome */
+/* Font Awesome icon spacing */
 .fa {
-    margin-right: 8px; /* Spazio tra l'icona e il testo */
+    margin-right: 8px; /* Space between icon and text */
 }

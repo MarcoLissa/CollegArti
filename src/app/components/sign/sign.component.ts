@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthComponent } from "../auth/auth.component";
 import { HeaderComponent } from "../header/header.component";
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { BackgroundComponent } from "../background/background.component";
 
 export enum SignMode {
   Login = 'Login',
@@ -11,7 +12,7 @@ export enum SignMode {
 @Component({
   selector: 'app-sign',
   standalone: true,
-  imports: [AuthComponent, RouterModule, HeaderComponent],
+  imports: [AuthComponent, RouterModule, HeaderComponent, BackgroundComponent],
   templateUrl: './sign.component.html',
   styleUrls: ['./sign.component.css']  // Note the correction: 'styleUrls' instead of 'styleUrl'
 })

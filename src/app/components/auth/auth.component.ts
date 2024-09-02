@@ -26,7 +26,7 @@ export class AuthComponent {
   
   private auth = getAuth(initializeApp(environment.firebaseConfig));
   private firestore = getFirestore();
-
+  city: string = '';
   email: string = '';
   password: string = '';  // Password required for all methods
   nome: string = '';
@@ -34,25 +34,64 @@ export class AuthComponent {
   authError: string | null = null;
 
   constructor(private router: Router) {}
+  ngOnInit() {
+    this.requestNotificationPermission();
+  }
+  requestNotificationPermission() {
+    if ('Notification' in window) {
+      Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+          console.log('Notification permission granted.');
+        } else {
+          console.log('Notification permission denied.');
+        }
+      });
+    }
+  }
+
+  showNotification(title: string, body: string) {
+    if ('Notification' in window && Notification.permission === 'granted') {
+      navigator.serviceWorker.getRegistration().then(registration => {
+        if (registration) {
+          registration.showNotification(title, {
+            body: body,
+            icon: 'assets/icons/icon-72x72.png',
+            data: {
+              dateOfArrival: Date.now(),
+              primaryKey: 1
+            }
+          });
+        }
+      });
+    }
+  }
 
   signInWithGoogle() {
     const provider = new GoogleAuthProvider();
     signInWithPopup(this.auth, provider)
       .then(async (result) => {
         const user = result.user;
-        // Redirect or prompt user to set a password
-        this.router.navigate(['/set-password'], { state: { uid: user.uid, email: user.email, nome: user.displayName, organizzazione: this.organizzazione } });
+        // Fetch additional user data from Firestore if needed
+        this.router.navigate(['/set-password'], { 
+          state: { 
+            uid: user.uid, 
+            city: this.city,  // Set city as needed
+            email: user.email, 
+            nome: user.displayName, 
+            organizzazione: this.organizzazione 
+          } 
+        });
       })
       .catch((error) => {
         console.error('Error during Google sign in: ', error);
         this.authError = "Errore Autenticazione";
       });
   }
-
+  
   signInWithEmail() {
     signInWithEmailAndPassword(this.auth, this.email, this.password)
       .then((result) => {
-        const userInstance = new User(result.user.uid, this.email, this.nome, this.organizzazione, this.password);
+        const userInstance = new User(result.user.uid, this.city, this.email, this.nome, this.organizzazione, this.password);
         this.navigateToProfile(userInstance);
       })
       .catch((error) => {
@@ -65,7 +104,7 @@ export class AuthComponent {
   signUpWithEmail() {
     createUserWithEmailAndPassword(this.auth, this.email, this.password)
       .then(async (result) => {
-        const userInstance = new User(result.user.uid, this.email, this.nome, this.organizzazione, this.password);
+        const userInstance = new User(result.user.uid, this.city, this.email, this.nome, this.organizzazione, this.password);
         await this.addUserToFirestore(userInstance);
         this.navigateToProfile(userInstance);
       })
@@ -75,10 +114,11 @@ export class AuthComponent {
         this.clearFields();
       });
   }
-
+  
   async addUserToFirestore(user: User) {
     try {
       await setDoc(doc(this.firestore, 'users', user.uid), {
+        city: user.city,
         email: user.email,
         nome: user.nome,
         organizzazione: user.organizzazione,
@@ -92,6 +132,7 @@ export class AuthComponent {
   }
 
   clearFields() {
+    this.city = '',
     this.email = '';
     this.password = '';
     this.nome = '';

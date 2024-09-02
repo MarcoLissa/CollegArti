@@ -19,7 +19,6 @@ export class AuthService {
     this.monitorAuthState();
   }
 
-  // Method to monitor the authentication state
   private monitorAuthState(): void {
     onAuthStateChanged(this.auth, async (firebaseUser: FirebaseUser | null) => {
       if (firebaseUser) {
@@ -30,10 +29,11 @@ export class AuthService {
         // Assuming you might need to fetch additional user data from Firestore
         const user = new User(
           firebaseUser.uid,
+          userData?.['city'] ?? '',  
           firebaseUser.email ?? null,
-          userData?.['nome'] ?? null, // Assuming 'nome' is part of user data in Firestore
-          userData?.['organizzazione'] ?? false, // Assuming 'organizzazione' is part of user data in Firestore
-          '' // Password should not be stored or managed here
+          userData?.['nome'] ?? null, 
+          userData?.['organizzazione'] ?? false, 
+          '' 
         );
         this.currentUserSubject.next(user);
       } else {
@@ -42,7 +42,6 @@ export class AuthService {
     });
   }
 
-  // Getter for the current user as an observable
   getCurrentUser(): Observable<User | null> {
     return this.currentUserSubject.asObservable();
   }

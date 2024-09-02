@@ -5,11 +5,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service'; // Import AuthService
 import { NgIf, CommonModule } from '@angular/common';
-
+import { SignOutComponent } from '../sign-out/sign-out.component';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MatButtonModule, RouterModule, MatDividerModule, MatIconModule, CommonModule],
+  imports: [MatButtonModule, RouterModule, MatDividerModule, MatIconModule, CommonModule,SignOutComponent],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })

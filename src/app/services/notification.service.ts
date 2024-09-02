@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { getFirestore, collection, query, where, getDocs, updateDoc, doc, arrayUnion, deleteDoc, getDoc, Timestamp } from 'firebase/firestore';
+import { getFirestore, collection, query, where, getDocs, updateDoc, doc, arrayUnion, deleteDoc, getDoc, Timestamp, addDoc } from 'firebase/firestore';
 import { Observable, from } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Notification } from '../models/notification.model';
@@ -46,6 +46,31 @@ export class NotificationService {
       return deleteDoc(notificationRef);
     });
   }
+
+  // Refuse the request and delete the notification
+  refuseRequest(notificationId: string): Promise<void> {
+    const notificationRef = doc(this.firestore, `requests/${notificationId}`);
+    return deleteDoc(notificationRef);
+  }
+
+  // Create a new notification
+  sendNotification(notification: Notification): Promise<void> {
+    const notificationRef = collection(this.firestore, 'requests');
+    return addDoc(notificationRef, {
+      eventId: notification.eventId,
+      senderId: notification.senderId,
+      sender: notification.senderName,
+      receiverId: notification.receiverId,
+      receiver: notification.receiverName,
+      sentData: Timestamp.fromDate(notification.receivedDate)
+    }).then(() => {
+      console.log('Notification sent successfully.');
+    }).catch(error => {
+      console.error('Error sending notification: ', error);
+    });
+  }
+
+  // Fetch event details by ID
   getEventById(eventId: string): Observable<Event | null> {
     const eventDocRef = doc(this.firestore, 'events', eventId);
     return from(getDoc(eventDocRef).then(docSnapshot => {
@@ -56,10 +81,5 @@ export class NotificationService {
         return null;
       }
     }));
-  }
-  // Refuse the request and delete the notification
-  refuseRequest(notificationId: string): Promise<void> {
-    const notificationRef = doc(this.firestore, `requests/${notificationId}`);
-    return deleteDoc(notificationRef);
   }
 }
