@@ -24,7 +24,8 @@
 </mat-card>
 
 <div class="container mt-5">
-  <h2>Contact Form</h2>
+  <h2>Survey Form</h2>
+  <h4>let us know what oyu think about the app!</h4>
   <form (ngSubmit)="onSubmit()">
     <div class="mb-3">
       <label for="name" class="form-label">Name</label>
@@ -33,6 +34,10 @@
     <div class="mb-3">
       <label for="email" class="form-label">Email address</label>
       <input type="email" class="form-control" id="email" required [(ngModel)]="email" name="email">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Rating</label>
+      <input type="email" class="form-control" id="rating" required [(ngModel)]="rating" name="rating">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

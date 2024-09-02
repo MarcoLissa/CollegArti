@@ -35,7 +35,6 @@ export class EventComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    // Get the event ID from the route parameters
     const eventId = this.route.snapshot.paramMap.get('id');
     if (eventId) {
       try {
@@ -49,8 +48,8 @@ export class EventComponent implements OnInit {
           this.authService.getCurrentUser().subscribe(user => {
             this.currentUser = user;
             if (user) {
-              this.isArtist = !user.organizzazione; // User is an artist if not an organizer
-              this.isEventCreator = user.uid === this.event?.creatorId; // Check if the user is the event creator
+              this.isArtist = !user.organizzazione; 
+              this.isEventCreator = user.uid === this.event?.creatorId; 
             }
           });
 
@@ -114,12 +113,12 @@ onFileSelected(event: any) {
     try {
       const requestsCollection = collection(this.firestore, 'requests');
       const requestPayload = {
-        sentData: Timestamp.fromDate(new Date()), // Current time
+        sentData: Timestamp.fromDate(new Date()),
         EventId: this.event.id,
         receiver: this.event.creator,
-        sender: this.currentUser.nome, // Assuming 'nome' is the user's name
-        receiverId: this.event.creatorId, // Assuming creatorId is available in event model
-        senderId: this.currentUser.uid // Current user's ID
+        sender: this.currentUser.nome,
+        receiverId: this.event.creatorId,
+        senderId: this.currentUser.uid 
       };
 
       await addDoc(requestsCollection, requestPayload);

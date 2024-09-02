@@ -26,9 +26,9 @@ export class NotificationService {
           id: doc.id,
           eventId: data['EventId'],
           senderId: data['senderId'],
-          senderName: data['sender'] || '', // Firestore field 'sender'
+          senderName: data['sender'] || '', 
           receiverId: data['receiverId'],
-          receiverName: data['receiver'] || '', // Firestore field 'receiver'
+          receiverName: data['receiver'] || '',
           receivedDate: data['sentData'] instanceof Timestamp ? data['sentData'].toDate() : new Date(data['sentData']._seconds * 1000),
         } as Notification;
       })

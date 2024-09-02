@@ -25,7 +25,7 @@ export class SetPasswordComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    // Ensure the user is passed via router state
+    // Ensure the user data is passed via router state
     const navigation = this.router.getCurrentNavigation();
     if (!navigation?.extras?.state) {
       this.router.navigate(['/login']);

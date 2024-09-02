@@ -25,6 +25,8 @@ import {MatListModule} from '@angular/material/list';
 export class HomeBodyComponent {
   name: string = '';
   email: string = '';
+  rating: number = 10;
+
   testoOrganizzazione = ` Sei un organizzazione e fatichi a trovare artisti locali
    che partecipino ai tuoi eventi? \n\nCrea subito il tuo post da fissare in bacheca e manda richieste all' elenco artisti`;
   testoArtista = ` Sei un artista in cerca di eventi nelle vicinanze a cui iscriverti?\n\n
@@ -49,13 +51,10 @@ export class HomeBodyComponent {
   }
 
   onSubmit() {
-    // Logic to handle form submission, e.g., save data to the server
     console.log('Form submitted:', { name: this.name, email: this.email });
-
-    // Trigger a notification upon successful submission
     this.showNotification('Form Submission', `Thank you, ${this.name}, for your submission!`);
   }
-
+  
   showNotification(title: string, body: string) {
     if ('Notification' in window && Notification.permission === 'granted') {
       navigator.serviceWorker.getRegistration().then(registration => {

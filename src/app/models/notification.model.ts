@@ -41,7 +41,6 @@ export class Notification {
       this.receivedDate = receivedDate;
     }
   
-    // Static method to create an instance from Firestore data
     static fromFirestoreData(data: any, id: string): Notification {
       return new Notification(
         id,

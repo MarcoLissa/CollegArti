@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore, setDoc } from 'firebase/firestore';
+import { getFirestore, setDoc, doc, getDoc } from 'firebase/firestore';
 import { environment } from '../../../environments/environment';
 import { SignMode } from '../sign/sign.component';
 import { RouterModule, Router } from '@angular/router';
@@ -12,7 +12,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { User } from '../../models/user.model';
-import { doc, getDoc } from 'firebase/firestore';
 
 @Component({
   selector: 'app-auth',
@@ -22,22 +21,23 @@ import { doc, getDoc } from 'firebase/firestore';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent {
-
   @Input() mode: SignMode = SignMode.Login;
   
   private auth = getAuth(initializeApp(environment.firebaseConfig));
   private firestore = getFirestore();
   city: string = '';
   email: string = '';
-  password: string = '';  // Password required for all methods
+  password: string = '';  
   nome: string = '';
   organizzazione: boolean = false;
   authError: string | null = null;
 
   constructor(private router: Router) {}
+
   ngOnInit() {
     this.requestNotificationPermission();
   }
+
   requestNotificationPermission() {
     if ('Notification' in window) {
       Notification.requestPermission().then(permission => {
@@ -74,9 +74,8 @@ export class AuthComponent {
         const user = result.user;
         const userDocRef = doc(this.firestore, 'users', user.uid);
         const userDoc = await getDoc(userDocRef);
-  
+
         if (userDoc.exists()) {
-          // User exists in Firestore, navigate to the profile page
           const userData = userDoc.data();
           const userInstance = new User(
             user.uid,
@@ -88,7 +87,6 @@ export class AuthComponent {
           );
           this.navigateToProfile(userInstance);
         } else {
-          // User does not exist, navigate to the set password page
           this.router.navigate(['/set-password'], {
             state: {
               uid: user.uid,
@@ -150,7 +148,7 @@ export class AuthComponent {
   }
 
   clearFields() {
-    this.city = '',
+    this.city = '';
     this.email = '';
     this.password = '';
     this.nome = '';
