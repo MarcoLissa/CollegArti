@@ -5,6 +5,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { HeaderComponent } from "../header/header.component";
 import { RouterModule } from '@angular/router';
 import { HomeBodyComponent } from "./home-body.component";
+import { BackgroundComponent } from "../background/background.component";
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ import { HomeBodyComponent } from "./home-body.component";
     MatDividerModule,
     RouterModule,
     MatIconModule,
-    HeaderComponent, HomeBodyComponent],
+    HeaderComponent, HomeBodyComponent, BackgroundComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
