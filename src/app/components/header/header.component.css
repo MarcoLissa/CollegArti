@@ -32,7 +32,7 @@
     align-items: center; /* Vertically align */
 }
 
-#home a, #login a, #signup a, #events a {
+#home a, #login a, #signup a, #events a, #artists a {
     color: #ffffff; /* Button text color */
     text-decoration: none; /* Remove underline */
     display: flex;

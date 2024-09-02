@@ -18,13 +18,14 @@ export class AddEventComponent implements OnInit {
   event: Event = {
     id: '',
     name: '',
-    eventData: new Date(), // Initial value as Date
+    eventData: new Date(),
     city: '',
     creator: '',
-    creationData: new Date(), // Initial value as Date
+    creationData: new Date(),
     ArtistSlots: 0,
     Artists: [],
-    creatorId: ''
+    creatorId: '',
+    imageUrls: [], 
   };
   error: string | null = null;
 

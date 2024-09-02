@@ -1,5 +1,5 @@
-<app-header></app-header> <!-- Assuming you have a header component -->
-
+<app-header></app-header> 
+<app-background></app-background>
 <div class="event-container">
   <h2>{{ event?.name }}</h2>
 
@@ -19,6 +19,16 @@
     <ul>
       <li *ngFor="let artist of event.Artists">{{ artist }}</li>
     </ul>
+    
+    <h3 *ngIf="isEventCreator">Upload Images:</h3>
+    <input *ngIf="isEventCreator" type="file" (change)="onFileSelected($event)" accept="image/png, image/jpeg" multiple>
+    
+    <div *ngIf="uploading" class="uploading-message">Uploading...</div>
+    
+    <h3>Event Images:</h3>
+    <div class="image-gallery">
+      <img *ngFor="let url of event.imageUrls" [src]="url" class="event-image">
+    </div>
 
     <button (click)="goBack()">Back to Events</button>
 

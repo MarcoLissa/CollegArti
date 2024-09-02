@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { getFirestore, setDoc } from 'firebase/firestore';
 import { environment } from '../../../environments/environment';
 import { SignMode } from '../sign/sign.component';
 import { RouterModule, Router } from '@angular/router';
@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { User } from '../../models/user.model';
+import { doc, getDoc } from 'firebase/firestore';
 
 @Component({
   selector: 'app-auth',
@@ -71,16 +72,33 @@ export class AuthComponent {
     signInWithPopup(this.auth, provider)
       .then(async (result) => {
         const user = result.user;
-        // Fetch additional user data from Firestore if needed
-        this.router.navigate(['/set-password'], { 
-          state: { 
-            uid: user.uid, 
-            city: this.city,  // Set city as needed
-            email: user.email, 
-            nome: user.displayName, 
-            organizzazione: this.organizzazione 
-          } 
-        });
+        const userDocRef = doc(this.firestore, 'users', user.uid);
+        const userDoc = await getDoc(userDocRef);
+  
+        if (userDoc.exists()) {
+          // User exists in Firestore, navigate to the profile page
+          const userData = userDoc.data();
+          const userInstance = new User(
+            user.uid,
+            userData['city'],
+            userData['email'],
+            userData['nome'],
+            userData['organizzazione'],
+            userData['password']
+          );
+          this.navigateToProfile(userInstance);
+        } else {
+          // User does not exist, navigate to the set password page
+          this.router.navigate(['/set-password'], {
+            state: {
+              uid: user.uid,
+              city: this.city,
+              email: user.email,
+              nome: user.displayName,
+              organizzazione: this.organizzazione
+            }
+          });
+        }
       })
       .catch((error) => {
         console.error('Error during Google sign in: ', error);

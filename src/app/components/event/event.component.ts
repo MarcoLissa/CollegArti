@@ -6,11 +6,14 @@ import { HeaderComponent } from '../header/header.component';
 import { Event } from '../../models/event.model';
 import { User } from '../../models/user.model';
 import { AuthService } from '../../services/auth.service';
+import { BackgroundComponent } from "../background/background.component";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { updateDoc, arrayUnion,  } from 'firebase/firestore';
 
 @Component({
   selector: 'app-event',
   standalone: true,
-  imports: [CommonModule, HeaderComponent],
+  imports: [CommonModule, HeaderComponent, BackgroundComponent],
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.css']
 })
@@ -18,9 +21,12 @@ export class EventComponent implements OnInit {
   event: Event | null = null;
   error: string | null = null;
   isArtist: boolean = false;
+  isEventCreator: boolean = false; 
   currentUser: User | null = null;
+  uploading: boolean = false;
 
   private firestore = getFirestore();
+  private storage = getStorage();
 
   constructor(
     private route: ActivatedRoute,
@@ -38,6 +44,16 @@ export class EventComponent implements OnInit {
         if (eventDoc.exists()) {
           const eventData = eventDoc.data();
           this.event = Event.fromFirestoreData(eventData, eventDoc.id);
+
+          // Check if the current user is the event creator
+          this.authService.getCurrentUser().subscribe(user => {
+            this.currentUser = user;
+            if (user) {
+              this.isArtist = !user.organizzazione; // User is an artist if not an organizer
+              this.isEventCreator = user.uid === this.event?.creatorId; // Check if the user is the event creator
+            }
+          });
+
         } else {
           this.error = 'Event not found';
         }
@@ -48,14 +64,43 @@ export class EventComponent implements OnInit {
     } else {
       this.error = 'Invalid event ID';
     }
+  }
+onFileSelected(event: any) {
+    const files: FileList = event.target.files;
+    if (files.length > 0) {
+      this.uploading = true;
+      const uploadPromises = Array.from(files).map(file => this.uploadFile(file));
+      Promise.all(uploadPromises).then(() => {
+        this.uploading = false;
+        alert('All files uploaded successfully!');
+      }).catch(err => {
+        this.uploading = false;
+        this.error = 'Error uploading files';
+        console.error(err);
+      });
+    }
+  }
 
-    this.authService.getCurrentUser().subscribe(user => {
-      this.currentUser = user;
-      if (user && !user.organizzazione) {
-        this.isArtist = true; // User is an artist
-      }
+  async uploadFile(file: File) {
+    if (!this.event) return;
+
+    const storageRef = ref(this.storage, `events/${this.event.id}/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    return new Promise<void>((resolve, reject) => {
+      uploadTask.on('state_changed', 
+        () => {}, 
+        (error) => reject(error),
+        async () => {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+          await updateDoc(doc(this.firestore, 'events', this.event!.id), {
+            imageUrls: arrayUnion(downloadURL)
+          });
+          this.event?.imageUrls.push(downloadURL);
+          resolve();
+        }
+      );
     });
-
   }
 
   // Method to navigate back to the showcase
