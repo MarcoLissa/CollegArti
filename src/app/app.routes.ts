@@ -20,6 +20,8 @@ export const routes: Routes = [
     { path: 'add-event', component: AddEventComponent },
     { path: 'showcase', component: ShowcaseComponent },
     { path: 'set-password', component: SetPasswordComponent },
+    { path: 'notifications', component: NotificationComponent },
+
     { path: 'artists', component: ArtistsComponent }, 
     { path: 'offline', component: OfflineComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
