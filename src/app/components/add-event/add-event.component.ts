@@ -6,11 +6,12 @@ import { HeaderComponent } from '../header/header.component';
 import { FormsModule } from '@angular/forms';
 import { Event } from '../../models/event.model';
 import { AuthService } from '../../services/auth.service';
+import { BackgroundComponent } from "../background/background.component";
 
 @Component({
   selector: 'app-add-event',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FormsModule],
+  imports: [CommonModule, HeaderComponent, FormsModule, BackgroundComponent],
   templateUrl: './add-event.component.html',
   styleUrls: ['./add-event.component.css']
 })
