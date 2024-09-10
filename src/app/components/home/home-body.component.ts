@@ -34,7 +34,6 @@ export class HomeBodyComponent {
   constructor() { }
 
   ngOnInit() {
-    // Request permission to send notifications
     this.requestNotificationPermission();
   }
 

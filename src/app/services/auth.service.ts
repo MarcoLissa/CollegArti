@@ -23,10 +23,9 @@ export class AuthService {
     onAuthStateChanged(this.auth, async (firebaseUser: FirebaseUser | null) => {
       if (firebaseUser) {
 
-        const userDoc = doc(this.firestore, 'users', firebaseUser.uid); // Assuming user data is stored in 'users' collection
+        const userDoc = doc(this.firestore, 'users', firebaseUser.uid); 
         const userSnapshot = await getDoc(userDoc);
         const userData = userSnapshot.data();
-        // Assuming you might need to fetch additional user data from Firestore
         const user = new User(
           firebaseUser.uid,
           userData?.['city'] ?? '',  

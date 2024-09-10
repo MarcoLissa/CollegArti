@@ -39,8 +39,8 @@
 
 .google-btn img {
   margin-right: 10px;
-  width: 24px; /* Set a consistent width for the icon */
-  height: 24px; /* Set a consistent height for the icon */
+  width: 24px; 
+  height: 24px;
 }
 
 .google-btn:hover {

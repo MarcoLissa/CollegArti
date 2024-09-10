@@ -53,15 +53,13 @@ export class AddEventComponent implements OnInit {
       // Convert Dates to Timestamps
       const eventToSave = {
         ...this.event,
-        creationData: Timestamp.fromDate(new Date(this.event.creationData)), // Convert Date to Timestamp
-        eventData: Timestamp.fromDate(new Date(this.event.eventData)) // Convert Date to Timestamp
+        creationData: Timestamp.fromDate(new Date(this.event.creationData)),
+        eventData: Timestamp.fromDate(new Date(this.event.eventData)) 
       };
 
-      // Add event to Firestore
       const docRef = await addDoc(eventsCollection, eventToSave);
       console.log('Event added with ID: ', docRef.id);
 
-      // Redirect to showcase after successful save
       this.router.navigate(['/showcase']);
     } catch (error) {
       console.error('Error adding event: ', error);

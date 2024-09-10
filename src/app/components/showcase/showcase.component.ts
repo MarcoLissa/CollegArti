@@ -18,7 +18,7 @@ import { BackgroundComponent } from "../background/background.component";
 export class ShowcaseComponent implements OnInit {
   events: Event[] = [];
   error: string | null = null;
-  isOrganizer: boolean = false; // Track if the user is an organizer
+  isOrganizer: boolean = false; 
 
   private firestore = getFirestore();
 
@@ -38,7 +38,6 @@ export class ShowcaseComponent implements OnInit {
      this.authService.getCurrentUser().subscribe(user => {
       console.log('User data received:', user);
       if (user) {
-        // Ensure user data is properly mapped
         const mappedUser = new User(
           user.uid || '',
           user.city || '',
@@ -62,7 +61,6 @@ export class ShowcaseComponent implements OnInit {
     this.router.navigate(['/event', eventId]);
   }
   addEvent() {
-    // Redirect to the add event page or open a modal to create an event
     this.router.navigate(['/add-event']);
   }
 

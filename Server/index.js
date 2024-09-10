@@ -16,12 +16,11 @@ const db = admin.firestore();
 // Middleware per gestire JSON
 app.use(express.json());
 
-// Esempio di API per ottenere dati da una collezione Firestore
 app.get('/api/users', async (req, res) => {
   try {
     const snapshot = await db.collection('users').get();
     const data = snapshot.docs.map(doc => {
-      console.log(doc.id, '=>', doc.data());  // Add logging here
+      console.log(doc.id, '=>', doc.data());  
       return doc.data();
     });
     res.status(200).json(data);

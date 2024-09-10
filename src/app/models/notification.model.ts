@@ -10,7 +10,6 @@ export interface Notification {
 }
 
 
-// notification.model.ts
 export class Notification {
     id: string;
     eventId: string;

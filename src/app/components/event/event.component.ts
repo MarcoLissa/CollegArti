@@ -102,7 +102,6 @@ onFileSelected(event: any) {
     });
   }
 
-  // Method to navigate back to the showcase
   goBack() {
     this.router.navigate(['/showcase']);
   }

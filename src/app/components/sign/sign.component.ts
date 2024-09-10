@@ -14,10 +14,10 @@ export enum SignMode {
   standalone: true,
   imports: [AuthComponent, RouterModule, HeaderComponent, BackgroundComponent],
   templateUrl: './sign.component.html',
-  styleUrls: ['./sign.component.css']  // Note the correction: 'styleUrls' instead of 'styleUrl'
+  styleUrls: ['./sign.component.css']  
 })
 export class SignComponent {
-  mode: SignMode = SignMode.Login;  // Default to Login
+  mode: SignMode = SignMode.Login;  
 
   constructor(private route: ActivatedRoute) {
     // Get the mode from the query parameters

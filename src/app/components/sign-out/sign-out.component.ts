@@ -3,7 +3,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../services/auth.service'; // Import AuthService
+import { AuthService } from '../../services/auth.service'; 
 import { NgIf, CommonModule } from '@angular/common';
 import { getAuth, signOut } from 'firebase/auth';
 @Component({

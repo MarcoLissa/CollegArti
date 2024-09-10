@@ -4,8 +4,8 @@ import { getFirestore, collection, query, getDocs } from 'firebase/firestore';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { BackgroundComponent } from '../background/background.component'; 
-import { User } from '../../models/user.model';  // Ensure this path is correct
-import { AuthService } from '../../services/auth.service';  // Ensure this path is correct
+import { User } from '../../models/user.model'; 
+import { AuthService } from '../../services/auth.service';  
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
@@ -34,13 +34,12 @@ export class ArtistsComponent implements OnInit {
     try {
       // Fetch users from Firestore
       const usersCollection = collection(this.firestore, 'users');
-      const q = query(usersCollection);  // Optionally, add a filter here if needed
+      const q = query(usersCollection);  
       const querySnapshot = await getDocs(q);
 
-      // Map documents to User objects
       this.artists = querySnapshot.docs.map(doc => {
         const data = doc.data();
-        return User.fromFirestoreData(data, doc.id);  // Make sure `fromFirestoreData` is defined correctly
+        return User.fromFirestoreData(data, doc.id); 
       });
 
       // Get the current user and check if they are an organizer

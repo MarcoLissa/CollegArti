@@ -6,19 +6,18 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CommonModule } from '@angular/common';
 import { User } from '../../models/user.model';
 import { HeaderComponent } from '../header/header.component';
-import { getAuth, updatePassword } from 'firebase/auth'; // Import Firebase auth to update password
+import { getAuth, updatePassword } from 'firebase/auth';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  standalone: true,  // Indicating that this component is standalone
+  standalone: true, 
   imports: [
-    FormsModule, // Import FormsModule to use ngModel
-    MatSlideToggleModule, // Import MatSlideToggleModule for the mat-slide-toggle component
-    CommonModule // Import CommonModule for common Angular directives like ngIf and ngFor
-    ,
+    FormsModule,
+    MatSlideToggleModule,
+    CommonModule,
     HeaderComponent
 ]
 })
@@ -57,7 +56,6 @@ export class ProfileComponent implements OnInit {
   async updateProfile() {
     if (this.user) {
       try {
-        // Update Firestore with the new user data
         const userRef = doc(this.firestore, 'users', this.user.uid);
         await updateDoc(userRef, {
           nome: this.user.nome,

@@ -1,49 +1,44 @@
-/* Stili generali dell'intestazione */
 .header {
-    background-color: #f59417; /* Colore arancione */
+    background-color: #f59417; 
     color: #ffffff;
     padding: 10px 20px;
     display: flex;
-    justify-content: space-between; /* Spaziatura tra gli elementi */
+    justify-content: space-between; 
     align-items: center;
 }
 
-/* Contenitore per il bottone Home */
 .home-container {
     display: flex;
-    justify-content: flex-start; /* Allinea l'elemento a sinistra */
+    justify-content: flex-start; 
 }
 
-/* Contenitore per i bottoni Login e Registrati */
 .auth-container {
     display: flex;
-    justify-content: flex-end; /* Allinea l'elemento a destra */
-    gap: 10px; /* Aggiunge spazio tra i bottoni */
+    justify-content: flex-end; 
+    gap: 10px;
 }
 
-/* Stili per l'icona e il bottone */
 .icon {
-    display: flex; /* Usa flexbox per il contenuto dell'icona */
-    align-items: center; /* Allinea verticalmente */
+    display: flex; 
+    align-items: center;
 }
 
 #home a, #login a, #signup a {
-    color: #ffffff; /* Colore del testo del bottone */
-    text-decoration: none; /* Rimuove la sottolineatura del testo */
+    color: #ffffff;
+    text-decoration: none; 
     display: flex;
     align-items: center;
     padding: 8px 16px;
-    background-color: #c04d01; /* Colore di sfondo del bottone */
-    border-radius: 4px; /* Angoli arrotondati */
-    transition: background-color 0.3s, color 0.3s; /* Transizioni per hover */
+    background-color: #c04d01; 
+    border-radius: 4px; 
+    transition: background-color 0.3s, color 0.3s;
 }
 
 #home a:hover, #login a:hover,#signup a:hover {
-    background-color: #b34100; /* Colore di sfondo al passaggio del mouse */
-    color: #ffffff; /* Colore del testo al passaggio del mouse */
+    background-color: #b34100;
+    color: #ffffff; 
 }
 
-/* Icona font-awesome */
 .fa {
-    margin-right: 8px; /* Spazio tra l'icona e il testo */
+    margin-right: 8px; 
 }

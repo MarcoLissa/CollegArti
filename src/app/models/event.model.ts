@@ -24,7 +24,6 @@ export class Event {
   }
 
 
-  // Static method to create an instance from Firestore data
   static fromFirestoreData(data: any, id: string): Event {
     return new Event(
       data.ArtistSlots || 0,

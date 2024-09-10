@@ -43,7 +43,7 @@ export class SetPasswordComponent implements OnInit {
       if (currentUser) {
         await updatePassword(currentUser, this.password);
         this.success = true;
-        this.router.navigate(['/profile']); // Redirect to profile after setting password
+        this.router.navigate(['/profile']); 
       }
     } catch (error) {
       console.error('Error setting password: ', error);
