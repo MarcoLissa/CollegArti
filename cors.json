@@ -1,0 +1,9 @@
+[
+    {
+      "origin": ["https://collegarti-e9b20.web.app"],
+      "method": ["GET", "POST", "PUT", "DELETE"],
+      "maxAgeSeconds": 3600,
+      "responseHeader": ["Content-Type", "Authorization"]
+    }
+  ]
+  

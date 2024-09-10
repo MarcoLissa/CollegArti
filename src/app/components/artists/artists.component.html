@@ -1,0 +1,27 @@
+<app-header></app-header>
+<app-background></app-background>
+<div class="artists-container">
+  <mat-toolbar color="primary">
+    <span>Artists</span>
+  </mat-toolbar>
+
+  <div *ngIf="error" class="error-message">
+    <mat-card>
+      <mat-card-content>
+        {{ error }}
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="artists-list">
+    <mat-card *ngFor="let artist of artists" class="artist-card">
+      <mat-card-header>
+        <mat-card-title>{{ artist.nome || 'No Name' }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Email: {{ artist.email || 'No Email' }}</p>
+        <p>City: {{ artist.city || 'No City' }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<app-header></app-header>
+<app-background></app-background>
+<div class="notifications-container">
+  <h2>Notifications</h2>
+  <div *ngIf="(notifications$ | async)?.length == 0">You have no new notifications.</div>
+  
+  <div *ngFor="let notification of (notifications$ | async)" class="notification-card">
+    <p>
+      <strong>Event:</strong> {{ notification.eventName }}<br>
+      <strong>From:</strong> {{ notification.senderName }}<br>
+      <strong>Date:</strong> {{ notification.receivedDate | date: 'short' }}
+    </p>
+    <div class="actions">
+      <button mat-button color="primary" (click)="accept(notification)">Accept</button>
+      <button mat-button color="warn" (click)="refuse(notification.id)">Refuse</button>
+    </div>
+  </div>
+</div>

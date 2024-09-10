@@ -1,0 +1,26 @@
+.artists-container {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .mat-toolbar {
+    margin-bottom: 20px;
+  }
+  
+  .error-message {
+    margin-bottom: 20px;
+  }
+  
+  .artists-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .artist-card {
+    width: 100%;
+    max-width: 300px;
+    margin: 10px;
+  }
+  

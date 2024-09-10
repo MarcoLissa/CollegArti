@@ -1,0 +1,25 @@
+<app-header></app-header> <!-- Assuming you have a header component -->
+
+<div class="add-event-container">
+  <h2>Add New Event</h2>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+
+  <form (ngSubmit)="saveEvent()">
+    <label for="name">Event Name:</label>
+    <input id="name" [(ngModel)]="event.name" name="name" required>
+
+    <label for="eventData">Event Date:</label>
+    <input id="eventData" [(ngModel)]="event.eventData" name="eventData" type="date" required>
+
+    <label for="city">Location:</label>
+    <input id="city" [(ngModel)]="event.city" name="city" required>
+
+    <label for="artistSlots">Total Artist Slots:</label>
+    <input id="artistSlots" [(ngModel)]="event.ArtistSlots" name="artistSlots" type="number" required>
+
+    <button type="submit">Save Event</button>
+  </form>
+</div>

@@ -1,0 +1,29 @@
+.login-status {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .status-icon {
+    margin-right: 8px;
+    font-size: 18px;
+  }
+  
+  
+  .status-icon.success {
+    color: #28a745; 
+  }
+  
+  .status-icon.error {
+    color: #6c757d;
+  }
+  

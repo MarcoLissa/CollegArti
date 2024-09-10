@@ -1,0 +1,40 @@
+.home-body-container {
+  text-align: center;
+  background-color: #e0f7fa; /* Light blue background for the entire container */
+  padding: 20px;
+}
+p.title {
+  font-size: 2.5em;        /* Make the text large */
+  font-weight: bold;       /* Make the text bold */
+  text-align: center;      /* Center the text */
+  margin-top: 20px;        /* Add some space above the title */
+  color: #1f083e;          /* Set a distinct color for the title */
+  text-transform: uppercase; /* Transform the text to uppercase */
+  letter-spacing: 2px;     /* Add space between letters */
+}
+.example-card {
+  width: 90%; 
+  margin: 3%;
+  height: 200px;/* Make the cards as wide as the window */
+  margin-bottom: 20px;
+  background-color: #81c6d5; /* Set a different background color for the card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+mat-card-header {
+  background-color: #8184c7; /* Different color for the header */
+  padding: 10px;
+  border-bottom: 1px solid #4c59af;
+}
+
+mat-card-content {
+  padding: 20px;
+  color: #424242; /* Set the text color inside the card */
+}
+
+img[mat-card-md-image] {
+  max-width: 50px;
+  height: auto;
+  margin-right: 20px;
+  border-radius: 50%;
+}

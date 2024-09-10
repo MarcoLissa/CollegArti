@@ -1,0 +1,47 @@
+<div id="header-container" class="header-container">
+  <header class="header">
+    <div id="home-container" class="home-container">
+      <div id="home" class="icon">
+        <a mat-raised-button [routerLink]="['/home']">
+          <i class="fa fa-house"></i> Home
+        </a>
+      </div>
+    </div>
+    <div id="events-container" class="events-container">
+      <div id="events" class="icon">
+        <a mat-raised-button [routerLink]="['/showcase']">
+          Events
+        </a>
+      </div>
+    </div>
+    <div id="artists-container" class=" events-container">
+      <div id="artists" class="icon">
+        <a mat-raised-button [routerLink]="['/artists']">
+          Artists
+        </a>
+      </div>
+    </div>
+
+    <div id="auth-actions-container" class="auth-actions-container">
+      <div *ngIf="!isLoggedIn" class="auth-buttons">
+        <div id="login" class="icon">
+          <a mat-raised-button [routerLink]="['/sign']" [queryParams]="{ mode: 'Login' }">Login</a>
+        </div>
+        <div id="signup" class="icon">
+          <a mat-raised-button [routerLink]="['/sign']" [queryParams]="{ mode: 'Register' }">Registrati</a>
+        </div>
+      </div>
+      
+      <div *ngIf="isLoggedIn" class="auth-buttons">
+        <div id="notifications" class="icon">
+          <a mat-raised-button [routerLink]="['/notifications']">
+            <i class="fa fa-bell"></i> Notifications
+          </a>
+        </div>
+        <div id="signout" class="icon">
+          <app-sign-out></app-sign-out>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>

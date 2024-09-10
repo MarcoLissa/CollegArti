@@ -1,0 +1,54 @@
+/* General styles for header */
+.header {
+    background-color: #f59417; /* Orange color */
+    color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between; /* Space between elements */
+    align-items: center;
+}
+
+/* Container for the Home button */
+.home-container {
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+}
+
+/* Container for buttons on the right */
+.auth-actions-container {
+    display: flex;
+    align-items: center; /* Align items vertically in the center */
+}
+
+/* Container for individual buttons */
+.auth-buttons {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+}
+
+/* Styles for icons and buttons */
+.icon {
+    display: flex; /* Use flexbox for icon content */
+    align-items: center; /* Vertically align */
+}
+
+#home a, #login a, #signup a, #events a, #artists a {
+    color: #ffffff; /* Button text color */
+    text-decoration: none; /* Remove underline */
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: #c04d01; /* Button background color */
+    border-radius: 4px; /* Rounded corners */
+    transition: background-color 0.3s, color 0.3s; /* Transition effects */
+}
+
+#home a:hover, #login a:hover, #signup a:hover, #events a:hover {
+    background-color: #b34100; /* Background color on hover */
+    color: #ffffff; /* Text color on hover */
+}
+
+/* Font Awesome icon spacing */
+.fa {
+    margin-right: 8px; /* Space between icon and text */
+}
